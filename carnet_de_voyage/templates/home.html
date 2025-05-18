@@ -1,0 +1,133 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="hero-section py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h1 class="display-4">
+          Planifiez votre séjour idéal avec
+          <span class="text-primary">Mon Carnet de Voyage</span>
+        </h1>
+        <p class="lead">
+          Organisez vos activités, planifiez votre emploi du temps et gardez des
+          souvenirs inoubliables de votre séjour en club de vacances.
+        </p>
+        <div class="mt-4">
+          <a href="#" class="btn btn-primary btn-lg">Commencer maintenant</a>
+          <a href="#" class="btn btn-outline-primary btn-lg ms-2"
+            >En savoir plus</a
+          >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img
+          src="{% static 'images/avatar1.png' %}"
+          alt="Travel Journal App"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="features py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Comment ça fonctionne</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-search fa-3x text-primary mb-3"></i>
+            <h3>Découvrez les activités</h3>
+            <p>
+              Explorez toutes les activités disponibles dans votre club de
+              vacances et sélectionnez vos préférées.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-calendar-alt fa-3x text-primary mb-3"></i>
+            <h3>Planifiez votre séjour</h3>
+            <p>
+              Organisez votre emploi du temps en ajoutant les activités aux
+              dates et heures qui vous conviennent.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center">
+            <i class="fas fa-book fa-3x text-primary mb-3"></i>
+            <h3>Créez votre carnet</h3>
+            <p>
+              Prenez des notes sur vos expériences et gardez un souvenir
+              précieux de chaque activité.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5">Ce que nos clients disent</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <img
+                src="{% static 'images/utilisateur.png' %}"
+                alt="Sophie Martin"
+                class="rounded-circle me-3"
+                width="50"
+              />
+              <div>
+                <h5 class="mb-0">Sophie Martin</h5>
+                <div class="text-warning">★★★★★</div>
+              </div>
+            </div>
+            <p class="card-text">
+              "J'ai adoré pouvoir planifier mes activités à l'avance. Cela m'a
+              permis de profiter pleinement de mon séjour sans perdre de temps!"
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <img src="{% static 'images/utilisateur.png' %}" alt="Pierre Dubois" class="rounded-circle me-3" width="50">
+              <div>
+                <h5 class="mb-0">Pierre Dubois</h5>
+                <div class="text-warning">★★★★★</div>
+              </div>
+            </div>
+            <p class="card-text">"L'application est très intuitive ! La planification des activités est devenue un jeu d'enfant. Je recommande vivement !"</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <img src="{% static 'images/utilisateur.png' %}" alt="Marie Laurent" class="rounded-circle me-3" width="50">
+              <div>
+                <h5 class="mb-0">Marie Laurent</h5>
+                <div class="text-warning">★★★★★</div>
+              </div>
+            </div>
+            <p class="card-text">"Grâce à cette application, j'ai pu créer un carnet de voyage magnifique avec tous mes souvenirs. C'est exactement ce qu'il me fallait !"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

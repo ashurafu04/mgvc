@@ -1,0 +1,22 @@
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+.env
+*.log
+
+# Virtual environments
+venv/
+env/
+
+# VSCode or IDE
+.vscode/
+.idea/
+
+# Static & media (if generated)
+staticfiles/
+media/
+
+# Migrations (optional, if you want to exclude them from commits)
+**/migrations/*.py
+!**/migrations/__init__.py
