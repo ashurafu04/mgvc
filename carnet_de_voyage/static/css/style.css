@@ -1,92 +1,123 @@
+/* Add these styles to control your logo size */
+.navbar-brand img {
+  max-height: 30px;
+  width: auto;
+}
+
+/* Make navbar properly vertically centered */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+  min-height: 70px; /* Ensure consistent navbar height */
+}
+
+/* Fix alignment within navbar */
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Style the buttons container */
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between buttons */
+}
+
+/* Consolidated logo styling - removed the excessive width */
+.navbar-logo {
+  width: auto; /* Changed from 500px to auto */
+  max-width: 200px; /* Added reasonable max-width */
+  height: auto;
+  max-height: 50px; /* Ensure it doesn't overflow navbar */
+}
+
+/* Your existing styles remain the same */
 .hero-section {
-    background-color: #f8f9fa;
-    padding: 80px 0;
+  background-color: #f8f9fa;
+  padding: 80px 0;
 }
 
 .features .card {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .features .card:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .testimonials .card {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .social-links a {
-    font-size: 1.5rem;
-    margin-right: 15px;
+  font-size: 1.5rem;
+  margin-right: 15px;
 }
 
 .social-links a:hover {
-    opacity: 0.8;
-}
-
-.navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  opacity: 0.8;
 }
 
 .btn-primary {
-    background-color: #0088cc;
-    border-color: #0088cc;
+  background-color: #0088cc;
+  border-color: #0088cc;
 }
 
 .btn-primary:hover {
-    background-color: #006699;
-    border-color: #006699;
+  background-color: #006699;
+  border-color: #006699;
 }
 
-
 /*  */
-body, html {
-    background-color: #F8F9FA;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+body,
+html {
+  background-color: #f8f9fa;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* Centre parfaitement le formulaire */
 .centered-row {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Style amélioré du conteneur */
 .form-container {
-    background-color: #fefefe;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-    border: 2px solid #007BFF; /* bordure bleue stylée */
-    max-width: 500px;
-    width: 100%;
+  background-color: #fefefe;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #007bff; /* bordure bleue stylée */
+  max-width: 500px;
+  width: 100%;
 }
 
 /* */
 .register-form .mb-3 {
-    margin-bottom: 0.75rem; /* réduit l’espace entre les champs */
+  margin-bottom: 0.75rem; /* réduit l'espace entre les champs */
 }
 
 .form-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
 }
 
 .register-form {
-    width: 100%;
-    max-width: 50%; /* réduit encore la largeur */
-    padding: 24px;    /* un peu plus de padding */
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
+  width: 100%;
+  max-width: 50%; /* réduit encore la largeur */
+  padding: 24px; /* un peu plus de padding */
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
 }
-
