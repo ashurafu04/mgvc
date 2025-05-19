@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="register-form">
+        <h2 class="text-center mb-4">Inscription</h2>
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Nom d'utilisateur</label>
+                <input type="text" class="form-control" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Adresse e-mail</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="first_name" class="form-label">Prénom</label>
+                <input type="text" class="form-control" name="first_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="last_name" class="form-label">Nom</label>
+                <input type="text" class="form-control" name="last_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="is_active" class="form-label">Actif</label>
+                <select class="form-control" name="is_active" required>
+                    <option value="1">Oui</option>
+                    <option value="0">Non</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
