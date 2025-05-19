@@ -70,6 +70,16 @@
   border-color: #006699;
 }
 
+.styled-image {
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  height: auto;
+  width: 90%; /* ou 400px, selon le rendu voulu */
+  max-height: 500px; /* optionnel pour limiter la hauteur */
+  object-fit: cover; /* optionnel pour bien cadrer l’image */
+}
+
 /*  */
 body,
 html {
