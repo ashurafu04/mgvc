@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Client
+from django.contrib.auth import authenticate, login as auth_login
+
 def register_view(request):
     return render(request, 'register.html')
 
@@ -8,10 +10,7 @@ def login_view(request):
     return render(request, 'login.html')
 
 def register(request):
-    print("Méthode :", request.method)
-    print("URL appelée :", request.path)
     if request.method == 'POST':
-        print("POST reçu")  
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')
@@ -30,7 +29,21 @@ def register(request):
         )
         client.set_password(password)
         client.save()
-        return redirect('login')  # Assure-toi que l'URL 'login' existe
-    else:
-        print("GET reçu")  # debug
-    return render(request, 'comptes/register.html')
+        return redirect('login-client') 
+    return render(request, 'register.html')
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password) 
+
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, 'Vous êtes maintenant connecté.')
+            return redirect('home')
+        else:
+            messages.error(request, 'Identifiants invalides. Veuillez réessayer.')
+            return render(request, 'login.html')
+    return redirect('login')  # Changed from 'login-view' to 'login'

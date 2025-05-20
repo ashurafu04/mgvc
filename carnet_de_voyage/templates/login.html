@@ -5,7 +5,7 @@
     <div class="row centered-row">
         <div class="col-md-6 form-container">
             <h2 class="mb-4">Connexion</h2>
-            <form method="post" action="{% url 'login' %}">
+            <form method="post" action="{% url 'login-client' %}">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="username" class="form-label">Nom d'utilisateur</label>
@@ -20,6 +20,4 @@
         </div>
     </div>
 </div>
-
-
 {% endblock %}
