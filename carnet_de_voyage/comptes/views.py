@@ -8,11 +8,13 @@ def login_view(request):
     return render(request, 'login.html')
 
 def register(request):
-    print("Méthode :", request.method)
-    print("URL appelée :", request.path)
-    if request.method == 'POST':
-        print("POST reçu")  
+    if request.method == 'POST':  
         username = request.POST.get('username')
+
+        if Client.objects.filter(username=username).exists():
+            messages.error(request, "Ce username est déjà pris.")
+            return redirect('register')
+
         password = request.POST.get('password')
         email = request.POST.get('email')
         first_name = request.POST.get('first_name')
@@ -30,7 +32,6 @@ def register(request):
         )
         client.set_password(password)
         client.save()
-        return redirect('login')  # Assure-toi que l'URL 'login' existe
-    else:
-        print("GET reçu")  # debug
+        messages.success(request, "Inscription réussie ! Connectez-vous.")
+        return redirect('login')  # nom de la vue login_view
     return render(request, 'comptes/register.html')
