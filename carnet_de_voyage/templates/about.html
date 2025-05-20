@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="text-center mb-5">
+                <img src="{% static 'images/journeoLogo.png' %}" alt="Journeo Logo" class="img-fluid mb-4" style="max-width: 200px;">
+                <h1 class="display-4 text-primary">En savoir plus sur Journeo</h1>
+            </div>
+            
+            <div class="card border-0 shadow-sm mb-5">
+                <div class="card-body p-5">
+                    <p class="lead">
+                        Journeo est une application web conçue pour les visiteurs du club de vacances MGVC, leur offrant une expérience de planification de séjour fluide, personnalisée et intuitive.
+                    </p>
+                    
+                    <hr class="my-4">
+                    
+                    <h3 class="text-primary mb-3">Fonctionnalités pour les clients</h3>
+                    <p>
+                        Grâce à Journeo, les clients peuvent explorer l'ensemble des activités proposées par le club, les organiser jour par jour selon leurs envies, estimer le coût global de leur programme, et conserver des souvenirs en rédigeant des notes personnelles pour chaque activité réalisée.
+                    </p>
+                    
+                    <div class="row mt-4 mb-4">
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-search fa-3x text-primary mb-3"></i>
+                            <h5>Exploration</h5>
+                            <p class="small">Découvrez toutes les activités disponibles</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-calendar-alt fa-3x text-primary mb-3"></i>
+                            <h5>Planification</h5>
+                            <p class="small">Organisez votre emploi du temps</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                            <h5>Souvenirs</h5>
+                            <p class="small">Créez votre carnet de voyage</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-primary mb-3">Gestion des carnets de voyage</h3>
+                    <p>
+                        L'interface propose une gestion complète des programmes de séjour appelés "carnets de voyage", dans lesquels les utilisateurs peuvent ajouter des activités, fixer des horaires, et consulter des rapports détaillés de leurs choix. Ces rapports, disponibles au format PDF, incluent un résumé des activités planifiées ainsi qu'un diagramme visuel représentant la répartition par domaine (sport, bien-être, restauration, etc.).
+                    </p>
+                    
+                    <h3 class="text-primary mb-3">Administration simplifiée</h3>
+                    <p>
+                        Côté administration, Journeo permet aux responsables du club de gérer les domaines d'activités, d'ajouter ou modifier les activités disponibles, de fixer les coûts associés, et de garantir la qualité des services proposés aux clients.
+                    </p>
+                    
+                    <div class="bg-light p-4 rounded mt-4">
+                        <p class="mb-0">
+                            <em>Pensée pour être à la fois fonctionnelle et agréable à utiliser, Journeo s'inscrit comme un véritable compagnon de voyage numérique au sein de l'écosystème MGVC.</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
+                <a href="{% url 'register' %}" class="btn btn-outline-primary ms-2">S'inscrire maintenant</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

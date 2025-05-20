@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="mb-4">Rapport du carnet de voyage</h1>
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5>{{ program.titre }}</h5>
+                    <p class="text-muted">{{ program.date_debut|date:"d/m/Y" }} - {{ program.date_fin|date:"d/m/Y" }}</p>
+                    
+                    <div class="mt-4">
+                        <h6>Statistiques</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <canvas id="activitiesChart"></canvas>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Nombre total d'activités
+                                        <span class="badge bg-primary rounded-pill">{{ total_activities }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Durée totale
+                                        <span class="badge bg-primary rounded-pill">{{ total_hours }} heures</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <a href="{% url 'download_pdf' program.id %}" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Télécharger le PDF
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Chart.js configuration for the pie chart
+    const ctx = document.getElementById('activitiesChart').getContext('2d');
+    const data = {{ chart_data|safe }};
+    new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %}

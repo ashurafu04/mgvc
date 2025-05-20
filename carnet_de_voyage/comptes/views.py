@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Client
+from django.contrib.auth import authenticate, login as auth_login
+
 def register_view(request):
     return render(request, 'register.html')
 
@@ -35,3 +37,17 @@ def register(request):
         messages.success(request, "Inscription réussie ! Connectez-vous.")
         return redirect('login')  # nom de la vue login_view
     return render(request, 'comptes/register.html')
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, "Connexion réussie !")
+            return redirect('home') 
+        else:
+            messages.error(request, "Username ou mot de passe invalides.")
+            return redirect('login') 
+    return render(request, 'comptes/login.html')
