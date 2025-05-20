@@ -75,6 +75,16 @@ TEMPLATES = [
     },
 ]
 
+# 
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.INFO: 'info',
+}
+
 WSGI_APPLICATION = 'carnet_de_voyage.wsgi.application'
 
 
