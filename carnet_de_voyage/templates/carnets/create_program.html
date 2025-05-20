@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Créer un nouveau carnet de voyage</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="titre" class="form-label">Titre du voyage</label>
+                    <input type="text" class="form-control" id="titre" name="titre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="date_debut" class="form-label">Date de début</label>
+                    <input type="date" class="form-control" id="date_debut" name="date_debut" required>
+                </div>
+                <div class="mb-3">
+                    <label for="date_fin" class="form-label">Date de fin</label>
+                    <input type="date" class="form-control" id="date_fin" name="date_fin" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Créer le carnet</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">{% if activity %}Modifier{% else %}Ajouter{% endif %} une activité</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="activite" class="form-label">Activité</label>
+                    <select class="form-select" id="activite" name="activite" required>
+                        <option value="">Sélectionner une activité</option>
+                        {% for act in available_activities %}
+                        <option value="{{ act.id }}" {% if activity.activite.id == act.id %}selected{% endif %}>
+                            {{ act.nom }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="date" name="date" 
+                           value="{{ activity.date|date:'Y-m-d' }}" required>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="heure_debut" class="form-label">Heure de début</label>
+                        <input type="time" class="form-control" id="heure_debut" name="heure_debut" 
+                               value="{{ activity.heure_debut }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="heure_fin" class="form-label">Heure de fin</label>
+                        <input type="time" class="form-control" id="heure_fin" name="heure_fin" 
+                               value="{{ activity.heure_fin }}" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="notes" class="form-label">Notes</label>
+                    <textarea class="form-control" id="notes" name="notes" rows="3">{{ activity.notes }}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <a href="{% url 'program_detail' program.id %}" class="btn btn-outline-secondary">Annuler</a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

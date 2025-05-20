@@ -10,10 +10,7 @@ def login_view(request):
     return render(request, 'login.html')
 
 def register(request):
-    print("Méthode :", request.method)
-    print("URL appelée :", request.path)
-    if request.method == 'POST':
-        print("POST reçu")  
+    if request.method == 'POST':  
         username = request.POST.get('username')
 
         if Client.objects.filter(username=username).exists():
@@ -37,7 +34,20 @@ def register(request):
         )
         client.set_password(password)
         client.save()
-        return redirect('login')  # Assure-toi que l'URL 'login' existe
-    else:
-        print("GET reçu")  # debug
+        messages.success(request, "Inscription réussie ! Connectez-vous.")
+        return redirect('login')  # nom de la vue login_view
     return render(request, 'comptes/register.html')
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, "Connexion réussie !")
+            return redirect('home') 
+        else:
+            messages.error(request, "Username ou mot de passe invalides.")
+            return redirect('login') 
+    return render(request, 'comptes/login.html')
