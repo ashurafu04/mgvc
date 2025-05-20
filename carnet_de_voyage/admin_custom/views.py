@@ -30,3 +30,29 @@ def add_activity(request):
         # This will be implemented later to handle activity creation
         return redirect('admin_custom:admin_activities')
     return redirect('admin_custom:admin_activities')
+
+
+def view_travel_programs(request):
+    travel_programs = []  # Fetch travel programs from the database
+    return render(request, 'view_travel_programs.html', {'travel_programs': travel_programs})
+
+def create_travel_program(request):
+    if request.method == 'POST':
+        # Handle form submission
+        return redirect('admin_custom:view_travel_programs')
+    return render(request, 'create_travel_program.html')
+
+def travel_program_detail(request, id):
+    travel_program = None  # Fetch the travel program by id
+    return render(request, 'travel_program_detail.html', {'travel_program': travel_program})
+
+def edit_activity(request, id):
+    if request.method == 'POST':
+        # Handle form submission
+        return redirect('admin_custom:program_detail', id=id)
+    activity = None  # Fetch the activity by id
+    return render(request, 'edit_activity.html', {'activity': activity})
+
+def travel_report(request):
+    report_url = ""  # Generate or fetch the report URL
+    return render(request, 'travel_report.html', {'report_url': report_url})
