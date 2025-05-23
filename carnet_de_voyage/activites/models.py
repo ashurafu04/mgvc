@@ -38,6 +38,7 @@ class Activite(models.Model):
     cout = models.DecimalField(max_digits=10, decimal_places=2)
     disponible = models.BooleanField(default=True)
     capacite_max = models.PositiveIntegerField(default=0)  # 0 = illimité
+    duree = models.PositiveIntegerField(default=0, help_text="Duration in minutes")
     date_creation = models.DateTimeField(auto_now_add=True)
     domaine = models.ForeignKey(
         Domaine, 
