@@ -90,20 +90,12 @@ html {
 }
 
 /* Centre parfaitement le formulaire */
-.centered-row {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Style amélioré du conteneur */
 .form-container {
   background-color: #fefefe;
   padding: 40px;
   border-radius: 16px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  /*border: 2px solid #007bff; /* bordure bleue stylée */
+  border: 1px solid #ddd;  /* bordure discrète grise claire */
   max-width: 500px;
   width: 100%;
 }
