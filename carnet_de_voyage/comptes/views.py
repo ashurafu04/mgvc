@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Client
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout
 
 def register_view(request):
     return render(request, 'register.html')
@@ -46,8 +47,13 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             messages.success(request, "Connexion réussie !")
-            return redirect('home') 
+            return redirect('list_programs') 
         else:
             messages.error(request, "Username ou mot de passe invalides.")
             return redirect('login') 
     return render(request, 'comptes/login.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
