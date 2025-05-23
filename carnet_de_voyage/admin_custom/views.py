@@ -80,13 +80,16 @@ def travel_program_detail(request, id):
 
 @user_passes_test(is_admin)
 def edit_activity(request, id):
-    activity = get_object_or_404(Activite, id=id)  # Ensure the correct model name
+    activity = get_object_or_404(Activite, id=id)
     if request.method == 'POST':
-        activity.nom = request.POST.get('nom')  # Ensure form field names match
+        activity.nom = request.POST.get('nom')
         activity.description = request.POST.get('description')
+        domaine_id = request.POST.get('domaine_id')
+        if domaine_id:
+            activity.domaine = Domaine.objects.get(id=domaine_id)
         activity.save()
         messages.success(request, 'Activity updated successfully.')
-        return redirect('admin_custom:manage_activities')  # Redirect after successful update
+        return redirect('admin_custom:manage_activities')
     return render(request, 'carnets/edit_activity.html', {'activity': activity})
 
 def travel_report(request):
