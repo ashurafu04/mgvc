@@ -5,11 +5,13 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.http import JsonResponse, HttpResponse, FileResponse
 from activites.models import Activite, Domaine
+from django.contrib import messages
 from collections import defaultdict
 from django.conf import settings
 import os
 
 def create_program_view (request):
+    list(messages.get_messages(request))
     return render(request, 'carnets/create_program.html', {'step': 1})
 
 def list_programs(request):
@@ -19,12 +21,14 @@ def list_programs(request):
 def create_carnet(request):
     print(request.method)
     if request.method == 'POST':
+        title = request.POST.get('titre')
         date_debut = request.POST.get('date_debut')
         date_fin = request.POST.get('date_fin')
 
         client = request.user.client  # suppose que l'utilisateur connecté est lié à un Client
 
         carnet = CarnetVoyage.objects.create(
+            title = title,
             client=client,
             date_debut_sejour=date_debut,
             date_fin_sejour=date_fin,
@@ -59,7 +63,7 @@ def add_activity(request, carnet_id):
         
         # Mettre à jour le coût total
         carnet.calculer_cout_total()
-        
+        messages.success(request, "Activité ajoutée avec succès.")
         return redirect('carnets:program_detail', carnet_id=carnet.id)
 
     domaines = Domaine.objects.filter(is_active=True)

@@ -10,6 +10,7 @@ class CarnetVoyage(models.Model):
     """
     Carnet de voyage d'un client, contenant les activités planifiées
     """
+    title = models.CharField(max_length=255, null=True, blank=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     date_debut_sejour = models.DateField(null=True, blank=True)
     date_fin_sejour = models.DateField(null=True, blank=True)

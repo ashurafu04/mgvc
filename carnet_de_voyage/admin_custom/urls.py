@@ -4,6 +4,7 @@ from django.urls import path
 app_name = 'admin_custom'
 
 urlpatterns = [
+    path('', views.admin_dashboard, name='dashboard'),
     path('domains/', views.manage_domains, name='manage_domains'),
     path('domains/add/', views.add_domain, name='admin_add_domain'),
     path('domains/edit/<int:domain_id>/', views.edit_domain, name='admin_edit_domain'),

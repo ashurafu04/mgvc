@@ -11,7 +11,7 @@
     />
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/progress-steps.css' %}">
+    <link rel="stylesheet" href="{% static 'css/progress-steps.css' %}" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,15 +25,31 @@
         </a>
         <div class="navbar-buttons">
           {% if user.is_authenticated %}
-              <a href="{% url 'carnets:create_program' %}" class="btn btn-link">creer programme</a>
-              <a href="{% url 'list_programs' %}" class="btn btn-link">lister programmes</a>
-              <a href="{% url 'carnets:mes_programmes' %}" class="btn btn-link">Mes programmes</a>
-              <a href="{% url 'logout' %}" class="btn btn-link">Déconnexion</a>
+            {% if user.is_staff %}
+            <div class="flex-grow-1 d-flex justify-content-center gap-3">
+              <a href="{% url 'admin_custom:manage_domains' %}" class="btn btn-outline-primary">
+                <i class="fas fa-tags"></i> Gérer Domaines
+              </a>
+              <a href="{% url 'admin_custom:manage_activities' %}" class="btn btn-outline-primary">
+                <i class="fas fa-running"></i> Gérer Activités
+              </a>
+            </div>
+            {% else %}
+            <div class="flex-grow-1 d-flex justify-content-center gap-3">
+              <a href="{% url 'list_programs' %}" class="btn btn-outline-primary">Lister Activités</a>
+              <a href="{% url 'carnets:create_program' %}" class="btn btn-outline-primary">Créer Programme</a>
+              <a href="{% url 'carnets:mes_programmes' %}" class="btn btn-outline-primary">Mes Carnets</a>
+            </div>
+            {% endif %}
+          <!-- Bouton déconnexion à droite -->
+          <div>
+            <a href="{% url 'logout' %}" class="btn btn-danger">Déconnexion</a>
+          </div>
           {% else %}
-              <a href="{% url 'login' %}" class="btn btn-link">Se connecter</a>
-              <a href="{% url 'register' %}" class="btn btn-primary">S'inscrire</a>
+          <a href="{% url 'login' %}" class="btn btn-link">Se connecter</a>
+          <a href="{% url 'register' %}" class="btn btn-primary">S'inscrire</a>
           {% endif %}
-      </div>
+        </div>
       </div>
     </nav>
 
