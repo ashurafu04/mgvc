@@ -37,8 +37,7 @@
             <h5 class="card-title text-primary">{{ act.activite.nom }}</h5>
             <p class="card-text">
               <strong>Date :</strong> {{ act.date_activite|date:"d/m/Y" }}<br />
-              <strong>Horaire :</strong> {{ act.heure_debut }} - {{
-              act.heure_fin }}
+              <strong>Horaire :</strong> {{ act.heure_debut|time:"H:i" }} - {{ act.heure_fin|time:"H:i" }}
             </p>
             {% if act.note_memoire %}
             <p class="card-text"><em>Note :</em> {{ act.note_memoire }}</p>

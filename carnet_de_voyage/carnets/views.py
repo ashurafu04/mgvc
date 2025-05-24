@@ -176,3 +176,12 @@ def download_pdf(request, carnet_id):
             return response
     
     return HttpResponse("Le PDF n'a pas pu être généré", status=500)
+
+@login_required
+def delete_carnet(request, carnet_id):
+    carnet = get_object_or_404(CarnetVoyage, id=carnet_id, client=request.user.client)
+    if request.method == 'POST':
+        carnet.delete()
+        messages.success(request, "Le carnet de voyage a été supprimé avec succès.")
+        return redirect('carnets:mes_programmes')
+    return redirect('carnets:program_detail', carnet_id=carnet_id)

@@ -16,4 +16,5 @@ urlpatterns = [
     path('<int:carnet_id>/activity/<int:activity_id>/edit/', views.edit_activity, name='edit_activity'),
     path('<int:carnet_id>/report/', views.generate_report, name='generate_report'),
     path('<int:carnet_id>/report/pdf/', views.download_pdf, name='download_pdf'),
+    path('<int:carnet_id>/delete/', views.delete_carnet, name='delete_carnet'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
