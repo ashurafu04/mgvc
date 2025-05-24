@@ -13,7 +13,7 @@ urlpatterns = [
     path('', include('comptes.urls')), 
     path('', include('activites.urls')),
     path('carnets/', include('carnets.urls', namespace='carnets')),
-    
+    path('reporting/', include('reporting.urls', namespace='reporting')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

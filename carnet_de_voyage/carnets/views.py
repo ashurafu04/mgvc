@@ -3,8 +3,11 @@ from .models import CarnetVoyage, ActivitePlanifiee, Activite
 from comptes.models import Client
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse, FileResponse
 from activites.models import Activite, Domaine
+from collections import defaultdict
+from django.conf import settings
+import os
 
 def create_program_view (request):
     return render(request, 'carnets/create_program.html', {'step': 1})
@@ -53,14 +56,18 @@ def add_activity(request, carnet_id):
             note_memoire=note_memoire,
             date_note=timezone.now() if note_memoire else None,
         )
-        return redirect('carnets:add_activity', carnet_id=carnet.id)
+        
+        # Mettre à jour le coût total
+        carnet.calculer_cout_total()
+        
+        return redirect('carnets:program_detail', carnet_id=carnet.id)
 
     domaines = Domaine.objects.filter(is_active=True)
 
     return render(request, 'carnets/planifier_activite.html', {
         'carnet': carnet,
         'domaines': domaines,
-        'activites': [],  # inutile ici car activites seront chargées via JS en fonction du domaine choisi
+        'activites': [],
         'step': 2,
     })
 
@@ -79,3 +86,89 @@ def mes_programmes(request):
     carnets = CarnetVoyage.objects.filter(client=client).prefetch_related('activites_planifiees__activite')
 
     return render(request, 'carnets/mes_programmes.html', {'carnets': carnets})
+
+@login_required
+def program_detail(request, carnet_id):
+    carnet = get_object_or_404(CarnetVoyage, id=carnet_id, client=request.user.client)
+    activites = carnet.activites_planifiees.all().select_related('activite')
+    
+    return render(request, 'carnets/program_detail.html', {
+        'carnet': carnet,
+        'activites': activites,
+        'total_duration': carnet.duree_totale
+    })
+
+@login_required
+def edit_activity(request, carnet_id, activity_id):
+    carnet = get_object_or_404(CarnetVoyage, id=carnet_id, client=request.user.client)
+    activity = get_object_or_404(ActivitePlanifiee, id=activity_id, carnet_voyage=carnet)
+    
+    if request.method == 'POST':
+        date_activite = request.POST.get('date_activite')
+        heure_debut = request.POST.get('heure_debut')
+        heure_fin = request.POST.get('heure_fin')
+        note_memoire = request.POST.get('note_memoire')
+        
+        activity.date_activite = date_activite
+        activity.heure_debut = heure_debut
+        activity.heure_fin = heure_fin
+        if note_memoire:
+            activity.modifier_note_memoire(note_memoire)
+        activity.save()
+        
+        # Mettre à jour le coût total
+        carnet.calculer_cout_total()
+        
+        return redirect('carnets:program_detail', carnet_id=carnet_id)
+    
+    return render(request, 'carnets/edit_activity.html', {
+        'carnet': carnet,
+        'activity': activity,
+    })
+
+@login_required
+def generate_report(request, carnet_id):
+    carnet = get_object_or_404(CarnetVoyage, id=carnet_id, client=request.user.client)
+    activites = carnet.activites_planifiees.all().select_related('activite')
+    
+    # Prepare chart data
+    activites_par_domaine = defaultdict(int)
+    for activity in activites:
+        activites_par_domaine[activity.activite.domaine.nom] += 1
+    
+    chart_data = {
+        'labels': list(activites_par_domaine.keys()),
+        'datasets': [{
+            'data': list(activites_par_domaine.values()),
+            'backgroundColor': [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56',
+                '#4BC0C0',
+                '#9966FF',
+                '#FF9F40'
+            ]
+        }]
+    }
+    
+    return render(request, 'carnets/report.html', {
+        'carnet': carnet,
+        'activites': activites,
+        'total_duration': carnet.duree_totale,
+        'chart_data': chart_data
+    })
+
+@login_required
+def download_pdf(request, carnet_id):
+    carnet = get_object_or_404(CarnetVoyage, id=carnet_id, client=request.user.client)
+    rapport = carnet.generer_rapport(format="pdf")
+    
+    # Get the file path from the rapport's fichier_url
+    if rapport.fichier_url:
+        file_path = os.path.join(settings.MEDIA_ROOT, str(rapport.fichier_url))
+        if os.path.exists(file_path):
+            response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+            response['Content-Disposition'] = f'attachment; filename="rapport_{carnet_id}.pdf"'
+            return response
+    
+    return HttpResponse("Le PDF n'a pas pu être généré", status=500)

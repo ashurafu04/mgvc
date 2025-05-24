@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from comptes.models import Client
 from activites.models import Activite
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 
 class CarnetVoyage(models.Model):
@@ -29,6 +31,11 @@ class CarnetVoyage(models.Model):
         self.cout_total = total
         self.save()
         return total
+    
+    @property
+    def duree_totale(self):
+        """Calcule la durée totale de toutes les activités en heures"""
+        return round(sum(act.duree for act in self.activites_planifiees.all()), 1)
     
     def valider_carnet(self):
         """Valide le carnet et le soumet au Club"""
@@ -112,3 +119,9 @@ class ActivitePlanifiee(models.Model):
             
         duree = fin - debut
         return duree.total_seconds() / 3600  # Durée en heures
+
+
+@receiver(post_delete, sender=ActivitePlanifiee)
+def update_cout_total_on_delete(sender, instance, **kwargs):
+    """Met à jour le coût total du carnet quand une activité est supprimée"""
+    instance.carnet_voyage.calculer_cout_total()
