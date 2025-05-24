@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 
+
 {% block content %}
+
+{% include 'includes/progress_steps.html' %}
+
 <div class="container py-5">
     <h1 class="mb-4">Créer un nouveau carnet de voyage</h1>
-    <form method="post">
+    <form method="post" action= "{% url 'carnets:create_carnet' %}" >
         {% csrf_token %}
         <div class="card shadow-sm">
             <div class="card-body">

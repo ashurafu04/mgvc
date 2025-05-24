@@ -11,7 +11,9 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
     path('', include('comptes.urls')), 
-    path('', include('activites.urls')),  
+    path('', include('activites.urls')),
+    path('carnets/', include('carnets.urls', namespace='carnets')),
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

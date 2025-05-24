@@ -11,6 +11,7 @@
     />
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/progress-steps.css' %}">
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,7 +25,9 @@
         </a>
         <div class="navbar-buttons">
           {% if user.is_authenticated %}
-              <a href="{% url 'list_programs' %}" class="btn btn-link">lister programs</a>
+              <a href="{% url 'carnets:create_program' %}" class="btn btn-link">creer programme</a>
+              <a href="{% url 'list_programs' %}" class="btn btn-link">lister programmes</a>
+              <a href="{% url 'carnets:mes_programmes' %}" class="btn btn-link">Mes programmes</a>
               <a href="{% url 'logout' %}" class="btn btn-link">Déconnexion</a>
           {% else %}
               <a href="{% url 'login' %}" class="btn btn-link">Se connecter</a>

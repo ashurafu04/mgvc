@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-5 text-center text-primary">Mes Carnets de Voyage</h1>
+
+    {% for carnet in carnets %}
+        <div class="mb-5 p-4 border rounded shadow-sm bg-light">
+            <h2 class="text-dark">{{ carnet.client }}</h2>
+            <p><strong>Période :</strong> {{ carnet.date_debut_sejour }} - {{ carnet.date_fin_sejour }}</p>
+            <p><strong>Coût total :</strong> {{ carnet.cout_total }} €</p>
+
+            {% if carnet.activites_planifiees.all %}
+                <div class="row mt-4">
+                    {% for act in carnet.activites_planifiees.all %}
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card h-100 shadow-sm border-0">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">{{ act.activite.nom }}</h5>
+                                    <p class="card-text">
+                                        <strong>Date :</strong> {{ act.date_activite }}<br>
+                                        <strong>Horaire :</strong> {{ act.heure_debut }} - {{ act.heure_fin }}
+                                    </p>
+                                    {% if act.note_memoire %}
+                                        <p class="card-text"><em>Note :</em> {{ act.note_memoire }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info mt-3">Aucune activité planifiée pour ce carnet.</div>
+            {% endif %}
+        </div>
+    {% empty %}
+        <div class="alert alert-warning text-center">Vous n'avez aucun carnet de voyage.</div>
+    {% endfor %}
+</div>
+{% endblock %}
