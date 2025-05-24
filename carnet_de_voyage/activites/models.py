@@ -51,6 +51,7 @@ class Activite(models.Model):
         null=True,
         related_name='activites_gerees'
     )
+    photo = models.ImageField(upload_to='activite_photos/', blank=True, null=True)
     
     class Meta:
         verbose_name = "Activité"

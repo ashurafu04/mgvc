@@ -15,6 +15,9 @@
                     {% for activite in domaine.activites.all %}
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="card h-100 shadow-sm border-0">
+                                {% if activite.photo %}
+                                    <img src="{{ activite.photo.url }}" class="card-img-top" alt="Photo de l'activité">
+                                {% endif %}
                                 <div class="card-body">
                                     <h5 class="card-title text-primary">{{ activite.nom }}</h5>
                                     <p class="card-text">{{ activite.description|truncatewords:20 }}</p>
