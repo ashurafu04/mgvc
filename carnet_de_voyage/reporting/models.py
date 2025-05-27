@@ -76,7 +76,7 @@ class Rapport(models.Model):
                 ap.activite.nom,
                 ap.activite.domaine.nom,
                 f"{ap.heure_debut.strftime('%H:%M')} - {ap.heure_fin.strftime('%H:%M')}",
-                f"{ap.activite.cout} €"
+                f"{ap.activite.cout} MAD"
             ])
         
         # Ajouter la table au PDF
@@ -94,7 +94,7 @@ class Rapport(models.Model):
         
         # Coût total
         elements.append(Spacer(1, 12))
-        elements.append(Paragraph(f"Coût total: {self.carnet_voyage.cout_total} €", styles['Heading3']))
+        elements.append(Paragraph(f"Coût total: {self.carnet_voyage.cout_total} MAD", styles['Heading3']))
         
         # Notes de mémoire si présentes
         notes_activities = activites_planifiees.exclude(note_memoire='')
