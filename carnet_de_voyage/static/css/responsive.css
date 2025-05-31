@@ -1,0 +1,160 @@
+/* Mobile Styles (up to 768px) */
+@media (max-width: 768px) {
+  /* Navbar adjustments */
+  .navbar .container {
+    padding: 10px;
+  }
+
+  .navbar-buttons {
+    gap: 5px;
+  }
+
+  .navbar-buttons .btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .flex-grow-1.d-flex {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  /* Hero section adjustments */
+  .hero-section {
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .hero-section .display-4 {
+    font-size: 2rem;
+  }
+
+  .hero-section .lead {
+    font-size: 1rem;
+  }
+
+  .styled-image {
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  /* Form adjustments */
+  .register-form {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .form-container {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  /* Card adjustments */
+  .card {
+    margin: 10px 0;
+  }
+
+  /* Footer adjustments */
+  footer .row > div {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .social-links {
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+/* Tablet Styles (768px to 991px) */
+@media (min-width: 769px) and (max-width: 991px) {
+  .register-form {
+    max-width: 70%;
+  }
+
+  .hero-section .display-4 {
+    font-size: 2.5rem;
+  }
+
+  .styled-image {
+    width: 95%;
+  }
+}
+
+/* Make tables responsive */
+@media (max-width: 768px) {
+  .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Adjust table cells for better mobile view */
+  .table td, .table th {
+    min-width: 100px;
+    white-space: nowrap;
+  }
+}
+
+/* Activity cards responsive adjustments */
+@media (max-width: 768px) {
+  .activity-card .card-body {
+    padding: 15px;
+  }
+
+  .activity-card .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+/* Progress steps responsive */
+@media (max-width: 768px) {
+  .progressbar {
+    gap: 40px;
+  }
+
+  .progressbar li {
+    min-width: 60px;
+  }
+
+  .step-title {
+    font-size: 14px;
+  }
+}
+
+/* Testimonials responsive */
+@media (max-width: 768px) {
+  .testimonials .card {
+    margin: 10px 0;
+  }
+
+  .testimonials .card-body {
+    padding: 15px;
+  }
+}
+
+/* Button groups responsive */
+@media (max-width: 768px) {
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-group .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+/* Modal responsive adjustments */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 10px;
+  }
+
+  .modal-body {
+    padding: 15px;
+  }
+} 

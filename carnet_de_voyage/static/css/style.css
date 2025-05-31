@@ -1,44 +1,171 @@
-/* Add these styles to control your logo size */
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  background-color: #f8f9fa;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Navbar Styles */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  min-height: 70px;
+  background-color: #ffffff;
+}
+
 .navbar-brand img {
   max-height: 30px;
   width: auto;
 }
 
-/* Make navbar properly vertically centered */
-.navbar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem 1rem; /* Adjust padding as needed */
-  min-height: 70px; /* Ensure consistent navbar height */
-}
-
-/* Fix alignment within navbar */
 .navbar .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Style the buttons container */
 .navbar-buttons {
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between buttons */
+  gap: 10px;
 }
 
-/* Consolidated logo styling - removed the excessive width */
 .navbar-logo {
-  width: auto; /* Changed from 500px to auto */
-  max-width: 200px; /* Added reasonable max-width */
+  width: auto;
+  max-width: 200px;
   height: auto;
-  max-height: 50px; /* Ensure it doesn't overflow navbar */
+  max-height: 50px;
 }
 
-/* Your existing styles remain the same */
+/* Hero Section */
 .hero-section {
   background-color: #f8f9fa;
   padding: 80px 0;
+  text-align: center;
 }
 
+/* Card Styles */
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Styles */
+.form-container {
+  background-color: #fefefe;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.form-control {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+}
+
+.form-control:focus {
+  border-color: #0088cc;
+  box-shadow: 0 0 0 0.2rem rgba(0, 136, 204, 0.25);
+}
+
+/* Button Styles */
+.btn {
+  font-weight: 500;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0088cc;
+  border-color: #0088cc;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #006699;
+  border-color: #006699;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 3rem 0;
+  margin-top: auto;
+}
+
+.social-links a {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-right: 15px;
+  transition: opacity 0.3s ease;
+}
+
+.social-links a:hover {
+  opacity: 0.8;
+}
+
+/* Utility Classes */
+.styled-image {
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  height: auto;
+  width: 90%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+/* Activity Card Specific Styles */
+.activity-card {
+  margin-bottom: 1.5rem;
+}
+
+.activity-card .card-body {
+  padding: 1.25rem;
+}
+
+.activity-card .card-title {
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+/* Progress Steps (kept from original) */
 .features .card {
   transition: transform 0.3s ease;
 }
@@ -51,72 +178,15 @@
   margin-bottom: 30px;
 }
 
-.social-links a {
-  font-size: 1.5rem;
-  margin-right: 15px;
-}
-
-.social-links a:hover {
-  opacity: 0.8;
-}
-
-.btn-primary {
-  background-color: #0088cc;
-  border-color: #0088cc;
-}
-
-.btn-primary:hover {
-  background-color: #006699;
-  border-color: #006699;
-}
-
-.styled-image {
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  max-width: 100%;
-  height: auto;
-  width: 90%; /* ou 400px, selon le rendu voulu */
-  max-height: 500px; /* optionnel pour limiter la hauteur */
-  object-fit: cover; /* optionnel pour bien cadrer l’image */
-}
-
-/*  */
-body,
-html {
-  background-color: #f8f9fa;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* Centre parfaitement le formulaire */
-.form-container {
-  background-color: #fefefe;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ddd;  /* bordure discrète grise claire */
-  max-width: 500px;
-  width: 100%;
-}
-
-/* */
+/* New styles from the code block */
 .register-form .mb-3 {
-  margin-bottom: 0.75rem; /* réduit l'espace entre les champs */
-}
-
-.form-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
+  margin-bottom: 0.75rem;
 }
 
 .register-form {
   width: 100%;
-  max-width: 50%; /* réduit encore la largeur */
-  padding: 24px; /* un peu plus de padding */
+  max-width: 50%;
+  padding: 24px;
   border: 1px solid #dee2e6;
   border-radius: 8px;
   background-color: white;
